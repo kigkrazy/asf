@@ -78,8 +78,8 @@ public class HttpModule {
             }
         };
         //设置缓存
-        builder.addNetworkInterceptor(cacheInterceptor);
-        builder.addInterceptor(cacheInterceptor);
+//        builder.addNetworkInterceptor(cacheInterceptor);
+//        builder.addInterceptor(cacheInterceptor);
         builder.addInterceptor(new LoggingInterceptor());//设置日志拦截器
         builder.cache(cache);
         //设置超时

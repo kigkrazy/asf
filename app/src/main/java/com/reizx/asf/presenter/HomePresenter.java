@@ -3,6 +3,7 @@ package com.reizx.asf.presenter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.reizx.asf.bean.event.TipEvent;
@@ -66,19 +67,24 @@ public class HomePresenter extends BasePresenterImpl<HomeConstract.View> impleme
         dm.getIpApi().getCurrentIp()
                 .compose(RxUtil.<ResponseBody>rxSchedulerHelper())
                 .subscribe(new Consumer<ResponseBody>() {
-                               @Override
-                               public void accept(ResponseBody responseBody) throws Exception {
-                                   String result = new String(responseBody.bytes(), "GB2312");
-                                   //todo 此处显示第二个TIP
-                                   RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null));
-                                   RxBus.getInstance().postDelay(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null), 5000);//销毁前一个TIP
-                                   RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.SHOW, QMUITipDialog.Builder.ICON_TYPE_SUCCESS, "请求成功"));//生成新TIP
-                                   RxBus.getInstance().postDelay(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null), 500);//延迟销毁TIP
-                                   view.setCurrentIp(result);
-                                   String timestamp = "" + System.currentTimeMillis();
-                                   RxBus.getInstance().post(new IpStatusEvent(timestamp, result));
-                               }
-                           });
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                        String result = new String(responseBody.bytes(), "GB2312");
+                        //todo 此处显示第二个TIP
+                        RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null));
+                        RxBus.getInstance().postDelay(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null), 5000);//销毁前一个TIP
+                        RxBus.getInstance().post(new TipEvent(view.getClass().getName(), TipEvent.TipAction.SHOW, QMUITipDialog.Builder.ICON_TYPE_SUCCESS, "请求成功"));//生成新TIP
+                        RxBus.getInstance().postDelay(new TipEvent(view.getClass().getName(), TipEvent.TipAction.DISMISS, -1, null), 500);//延迟销毁TIP
+                        view.setCurrentIp(result);
+                        String timestamp = "" + System.currentTimeMillis();
+                        RxBus.getInstance().post(new IpStatusEvent(timestamp, result));
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        AsfLog.d("get something error : " + throwable.toString());
+                    }
+                });
 
     }
 }
