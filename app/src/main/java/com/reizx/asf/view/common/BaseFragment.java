@@ -73,8 +73,8 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
         unbinder = ButterKnife.bind(this, rootView);
         baseActivity = (BaseActivity) getActivity();
         initInject();//设置presenter注入
-        initAllMembersView();//初始化一些VIEW对象
         presenter.attachView(this);
+        initAllMembersView();//初始化一些VIEW对象
         return rootView;
     }
 

@@ -95,8 +95,18 @@ public class AsfLog {
     public static void d(@NonNull String message) {
         logger.d(message);
     }
+
     public static void d(@NonNull String tag, @NonNull String message) {
-        message = "[" + tag + "] : " + message;
+        message = String.format("[%s] : %s", tag, message);
+        logger.d(message);
+    }
+
+    public static void dd(@NonNull String message, Object... args) {
+        logger.d(String.format(message, args));
+    }
+
+    public static void ddt(@NonNull String tag, @NonNull String message, Object... args) {
+        message = String.format("[%s] : %s", tag, String.format(message, args));
         logger.d(message);
     }
 
@@ -105,27 +115,52 @@ public class AsfLog {
     }
 
     public static void i(@NonNull String tag, @NonNull String message) {
-        message = "[" + tag + "] : " + message;
+        message = String.format("[%s] : %s", tag, message);
         logger.i(message);
     }
 
+    public static void ii(@NonNull String message, Object... args) {
+        logger.i(String.format(message, args));
+    }
+
+    public static void iit(@NonNull String tag, @NonNull String message, Object... args) {
+        message = String.format("[%s] : %s", tag, String.format(message, args));
+        logger.i(message);
+    }
 
     public static void v(@NonNull String message, @Nullable Object... args) {
         logger.v(message, args);
     }
 
     public static void v(@NonNull String tag, @NonNull String message) {
-        message = "[" + tag + "] : " + message;
+        message = String.format("[%s] : %s", tag, message);
         logger.v(message);
     }
 
+    public static void vv(@NonNull String message, Object ...args) {
+        logger.v(String.format(message, args));
+    }
+
+    public static void vvt(@NonNull String tag, @NonNull String message, Object ...args) {
+        message = String.format("[%s] : %s", tag, String.format(message, args));
+        logger.v(message);
+    }
 
     public static void w(@NonNull String message, @Nullable Object... args) {
         logger.w(message, args);
     }
 
     public static void w(@NonNull String tag, @NonNull String message) {
-        message = "[" + tag + "] : " + message;
+        message = String.format("[%s] : %s", tag, message);
+        logger.w(message);
+    }
+
+    public static void ww(@NonNull String message, Object ...args) {
+        logger.w(String.format(message, args));
+    }
+
+    public static void wwt(@NonNull String tag, @NonNull String message, Object ...args) {
+        message = String.format("[%s] : %s", tag, String.format(message, args));
         logger.w(message);
     }
 
@@ -135,7 +170,16 @@ public class AsfLog {
     }
 
     public static void e(@NonNull String tag, @NonNull String message) {
-        message = "[" + tag + "] : " + message;
+        message = String.format("[%s] : %s", tag, message);
+        logger.e(message);
+    }
+
+    public static void ee(@NonNull String message, Object ...args) {
+        logger.e(String.format(message, args));
+    }
+
+    public static void eet(@NonNull String tag, @NonNull String message, Object ...args) {
+        message = String.format("[%s] : %s", tag, String.format(message, args));
         logger.e(message);
     }
 
