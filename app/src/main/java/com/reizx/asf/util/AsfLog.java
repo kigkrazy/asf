@@ -56,20 +56,43 @@ public class AsfLog {
 
     /**
      * 初始化Log，这个初始化只会打印到控制台
+     *
      * @param tag 日志TAG
      */
-    public static void initLog(String tag){
+    public static void initLog(String tag) {
+        initLog(LogLevel.ALL, tag);
+    }
+
+
+    /**
+     * 初始化Log，这个初始化只会打印到控制台
+     *
+     * @param level 低于level的将不会被打印。值请参考 {@link LogLevel}
+     * @param tag   日志TAG
+     */
+    public static void initLog(int level, String tag) {
         XLog.init(LogLevel.ALL);//初始化否则报错
         Printer androidPrinter = new AndroidPrinter();
-        initLog(tag, androidPrinter);
+        buildLogger(level, tag, androidPrinter);
     }
 
     /**
      * 初始化Log，这个初始化会打印到控制台和文件
-     * @param tag 日志TAG
+     *
+     * @param tag    日志TAG
      * @param logDir 打印日志保存文件的地址
      */
-    public static void initLog(String tag, String logDir){
+    public static void initLog(String tag, String logDir) {
+        initLog(LogLevel.ALL, tag, logDir);
+    }
+
+    /**
+     * 初始化Log，这个初始化会打印到控制台和文件
+     *
+     * @param tag    日志TAG
+     * @param logDir 打印日志保存文件的地址
+     */
+    public static void initLog(int level, String tag, String logDir) {
         Printer androidPrinter = new AndroidPrinter();                                      // 通过 android.util.Log 打印日志的打印器
         AsfLog.HistoryDateFileNameGenerator fileNameGenerator = new AsfLog.HistoryDateFileNameGenerator(3, logDir);
         Printer filePrinter = new FilePrinter                                               // 打印日志到文件的打印器
@@ -79,13 +102,19 @@ public class AsfLog {
                 .logFlattener(new DefaultFlattener())                                       // 指定日志平铺器，默认为 DefaultFlattener
                 .build();
 
-        initLog(tag, androidPrinter, filePrinter);
+        buildLogger(level, tag, androidPrinter, filePrinter);
     }
 
-    public static void initLog(String tag, Printer...printers){
+    /**
+     * @param level    see {@link LogLevel}低于level的将不会被打印
+     * @param tag
+     * @param printers
+     */
+    private static void buildLogger(int level, String tag, Printer... printers) {
         logger = new Logger.Builder()
                 .nt()
                 .tag(tag)
+                .logLevel(level)
                 .nb()
                 .nst()
                 .printers(printers)
