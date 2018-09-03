@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.blankj.utilcode.constant.TimeConstants;
 import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.TimeUtils;
 import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.Logger;
@@ -55,54 +56,28 @@ public class AsfLog {
     }
 
     /**
-     * 初始化Log，这个初始化只会打印到控制台
-     *
-     * @param tag 日志TAG
-     */
-    public static void initLog(String tag) {
-        initLog(LogLevel.ALL, tag);
-    }
-
-
-    /**
-     * 初始化Log，这个初始化只会打印到控制台
-     *
-     * @param level 低于level的将不会被打印。值请参考 {@link LogLevel}
-     * @param tag   日志TAG
-     */
-    public static void initLog(int level, String tag) {
-        XLog.init(LogLevel.ALL);//初始化否则报错
-        Printer androidPrinter = new AndroidPrinter();
-        buildLogger(level, tag, androidPrinter);
-    }
-
-    /**
      * 初始化Log，这个初始化会打印到控制台和文件
      *
      * @param tag    日志TAG
-     * @param logDir 打印日志保存文件的地址
+     * @param level  低于level的将不会被打印。值请参考 {@link LogLevel}
+     * @param logDir 打印日志保存文件的地址，为null的时候标示不打印
      */
-    public static void initLog(String tag, String logDir) {
-        initLog(LogLevel.ALL, tag, logDir);
-    }
+    public static void initLog(String tag, int level, String logDir) {
+        Printer androidPrinter = new AndroidPrinter();                                     // 通过 android.util.Log 打印日志的打印器
 
-    /**
-     * 初始化Log，这个初始化会打印到控制台和文件
-     *
-     * @param tag    日志TAG
-     * @param logDir 打印日志保存文件的地址
-     */
-    public static void initLog(int level, String tag, String logDir) {
-        Printer androidPrinter = new AndroidPrinter();                                      // 通过 android.util.Log 打印日志的打印器
-        AsfLog.HistoryDateFileNameGenerator fileNameGenerator = new AsfLog.HistoryDateFileNameGenerator(3, logDir);
-        Printer filePrinter = new FilePrinter                                               // 打印日志到文件的打印器
-                .Builder(logDir)                                                            // 指定保存日志文件的路径
-                .fileNameGenerator(fileNameGenerator)                                       // 指定日志文件名生成器，默认为 ChangelessFileNameGenerator("log")
-                .backupStrategy(new FileSizeBackupStrategy(500 * 1024 * 1024))    // 指定日志文件备份策略，默认为 FileSizeBackupStrategy(1024 * 1024)
-                .logFlattener(new DefaultFlattener())                                       // 指定日志平铺器，默认为 DefaultFlattener
-                .build();
+        if (!StringUtils.isEmpty(logDir)){
+            AsfLog.HistoryDateFileNameGenerator fileNameGenerator = new AsfLog.HistoryDateFileNameGenerator(3, logDir);
+            Printer filePrinter = new FilePrinter                                               // 打印日志到文件的打印器
+                    .Builder(logDir)                                                            // 指定保存日志文件的路径
+                    .fileNameGenerator(fileNameGenerator)                                       // 指定日志文件名生成器，默认为 ChangelessFileNameGenerator("log")
+                    .backupStrategy(new FileSizeBackupStrategy(500 * 1024 * 1024))    // 指定日志文件备份策略，默认为 FileSizeBackupStrategy(1024 * 1024)
+                    .logFlattener(new DefaultFlattener())                                       // 指定日志平铺器，默认为 DefaultFlattener
+                    .build();
+            buildLogger(level, tag, androidPrinter, filePrinter);
+        } else {
+            buildLogger(level, tag, androidPrinter);
+        }
 
-        buildLogger(level, tag, androidPrinter, filePrinter);
     }
 
     /**

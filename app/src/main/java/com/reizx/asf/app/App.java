@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.blankj.utilcode.util.Utils;
+import com.elvishew.xlog.LogLevel;
 import com.reizx.asf.di.component.AppComponent;
 import com.reizx.asf.di.component.DaggerAppComponent;
 import com.reizx.asf.di.module.AppModule;
@@ -28,7 +29,7 @@ public class App extends Application {
         //初始化日志环境，设置全局
 
         Log.d("asf-tag", "asf-tag onCreate...");
-        initLog("asf-tag");
+        initLog("asf-tag", LogLevel.ALL, null);
         Utils.init(this);//初始化AndroidUtilCode库
         Andromeda.init(app);
     }
