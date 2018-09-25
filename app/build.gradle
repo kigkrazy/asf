@@ -27,7 +27,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             apply from: project.rootProject.rootDir.absolutePath + File.separator + "signing_config.gradle"
-//设置签名
+            //设置签名
         }
     }
 }

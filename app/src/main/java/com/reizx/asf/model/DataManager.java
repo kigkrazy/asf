@@ -46,4 +46,8 @@ public class DataManager {
     public IpApi getIpApi() {
         return ipApi;
     }
+
+    public EasySP getEasySP() {
+        return easySP;
+    }
 }
