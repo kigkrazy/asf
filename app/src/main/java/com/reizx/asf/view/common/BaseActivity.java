@@ -48,7 +48,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         initInject();//注入依赖
         initAllMembersView();//初始化一些其他视图对象
         presenter.attachView(this);
-        onCreateFinish();//onCreate完成时候调用
     }
 
     @Override
@@ -89,13 +88,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      * 注入依赖
      */
     protected abstract void initInject();
-
-    /**
-     * onCreate完成时候调用，一般用于请求权限之类的操作
-     */
-    protected void onCreateFinish(){
-
-    }
 
     @Override
     public void showErrorMsg(String msg) {
