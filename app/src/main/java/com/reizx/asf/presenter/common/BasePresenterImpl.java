@@ -13,7 +13,7 @@ import io.reactivex.functions.Consumer;
 public class BasePresenterImpl<T extends BaseView> implements IBasePresenter<T> {
     protected T view;
     // CompositeDisposable是Disposable的容器，用来快速解除订阅，管理多个Disposable的生命周期
-    public DataManager dm;// 数据管理
+    protected DataManager dm;// 数据管理
 
     protected CompositeDisposable compositeDisposable;
 
@@ -93,5 +93,9 @@ public class BasePresenterImpl<T extends BaseView> implements IBasePresenter<T> 
                         view.showTip(tipEvent.getIconType(), tipEvent.getTipWord());
                     }
                 }));
+    }
+
+    public DataManager getDm() {
+        return dm;
     }
 }
