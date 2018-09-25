@@ -2,11 +2,7 @@ package com.reizx.asf.di.module;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.reizx.asf.constant.Constants;
-import com.reizx.asf.di.qualifier.IpQualifier;
-import com.reizx.asf.model.DataManager;
-import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.util.AsfLog;
-import com.reizx.asf.util.SSLSocketClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,9 +19,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 @Module
 public class HttpModule {

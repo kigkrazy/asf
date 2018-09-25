@@ -1,7 +1,7 @@
 package com.reizx.asf.model;
 
 import com.reizx.asf.app.App;
-import com.reizx.asf.model.retrofit.api.IpApi;
+import com.reizx.asf.model.api.IpApi;
 import com.white.easysp.EasySP;
 
 import okhttp3.OkHttpClient;

@@ -3,7 +3,6 @@ package com.reizx.asf.presenter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.reizx.asf.bean.event.TipEvent;
@@ -12,7 +11,6 @@ import com.reizx.asf.constant.Constants;
 import com.reizx.asf.contract.HomeConstract;
 import com.reizx.asf.bean.event.IpStatusEvent;
 import com.reizx.asf.model.DataManager;
-import com.reizx.asf.model.retrofit.api.IpApi;
 import com.reizx.asf.presenter.common.BasePresenterImpl;
 import com.reizx.asf.service.ForegroundService;
 import com.reizx.asf.util.AsfLog;

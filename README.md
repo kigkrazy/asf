@@ -8,7 +8,7 @@
 直接下载项目，修改项目`包名`，`项目名`，`applicationId`等关键信息就可以进行开发了。
 
 ### 添加Retrofit2请求接口(此处我们以`IpApi`为例)
-1. 在`com.reizx.asf.model.retrofit.api`包下建立相关接口类(`IpApi`)
+1. 在`com.reizx.asf.model.api`包下建立相关接口类(`IpApi`)
 2. 在`com.reizx.ares.mgr.model.DataManager#createAllApi`的构造函数添加对应API的实例创建
 ```java
     private UpdateApi updateApi;//此处声明

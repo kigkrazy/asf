@@ -1,4 +1,4 @@
-package com.reizx.asf.model.retrofit.api;
+package com.reizx.asf.model.api;
 
 import io.reactivex.Flowable;
 import okhttp3.ResponseBody;
