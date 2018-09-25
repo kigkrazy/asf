@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import com.reizx.asf.IAndromedaInf;
 import com.reizx.asf.R;
 import com.reizx.asf.constant.Constants;
+import com.reizx.asf.service.common.BaseService;
 import com.reizx.asf.util.AsfLog;
 
 import org.qiyi.video.svg.Andromeda;
@@ -22,7 +23,7 @@ import org.qiyi.video.svg.Andromeda;
  * Created by kigkrazy on 18-5-10.
  */
 
-public class ForegroundService extends Service {
+public class ForegroundService extends BaseService {
     public final static String TAG = "ForegroundService";
 
     @Nullable
@@ -81,6 +82,11 @@ public class ForegroundService extends Service {
                 AsfLog.d("remoteCall success...");
             }
         });
+    }
+
+    @Override
+    protected void initInject() {
+        getServiceComponent().inject(this);
     }
 
     /**
