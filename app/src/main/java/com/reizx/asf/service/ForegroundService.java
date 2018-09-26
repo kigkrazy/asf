@@ -34,7 +34,7 @@ public class ForegroundService extends BaseService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        AsfLog.d(TAG, "--------->onStartCommand: ");
+        AsfLog.dt(TAG, "--------->onStartCommand: ");
         //启动前台服务
         setNotification(Constants.FORGROUND_SERVICE_TITILE,
                 Constants.FORGROUND_SERVICE_CONTENT_TEXT,
@@ -95,7 +95,7 @@ public class ForegroundService extends BaseService {
     public static class NotificationClickReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            AsfLog.d(TAG, "NotificationClickReceiver --------->onReceive: stop service");
+            AsfLog.dt(TAG, "NotificationClickReceiver --------->onReceive: stop service");
             context.stopService(new Intent(context, ForegroundService.class));
         }
     }

@@ -12,6 +12,6 @@ import com.reizx.asf.util.AsfLog;
 public class BootBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        AsfLog.d(BootBroadcast.class.toString(),"receive BootBroadcast");
+        AsfLog.dt(BootBroadcast.class.toString(),"receive BootBroadcast");
     }
 }

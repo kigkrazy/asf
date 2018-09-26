@@ -100,7 +100,7 @@ public class AsfLog {
         logger.d(message);
     }
 
-    public static void d(@NonNull String tag, @NonNull String message) {
+    public static void dt(@NonNull String tag, @NonNull String message) {
         message = String.format("[%s] : %s", tag, message);
         logger.d(message);
     }
@@ -118,7 +118,7 @@ public class AsfLog {
         logger.i(message);
     }
 
-    public static void i(@NonNull String tag, @NonNull String message) {
+    public static void it(@NonNull String tag, @NonNull String message) {
         message = String.format("[%s] : %s", tag, message);
         logger.i(message);
     }
@@ -136,7 +136,7 @@ public class AsfLog {
         logger.v(message, args);
     }
 
-    public static void v(@NonNull String tag, @NonNull String message) {
+    public static void vt(@NonNull String tag, @NonNull String message) {
         message = String.format("[%s] : %s", tag, message);
         logger.v(message);
     }
@@ -154,7 +154,7 @@ public class AsfLog {
         logger.w(message, args);
     }
 
-    public static void w(@NonNull String tag, @NonNull String message) {
+    public static void wt(@NonNull String tag, @NonNull String message) {
         message = String.format("[%s] : %s", tag, message);
         logger.w(message);
     }
@@ -173,7 +173,7 @@ public class AsfLog {
         logger.e(message, args);
     }
 
-    public static void e(@NonNull String tag, @NonNull String message) {
+    public static void et(@NonNull String tag, @NonNull String message) {
         message = String.format("[%s] : %s", tag, message);
         logger.e(message);
     }
