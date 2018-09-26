@@ -9,7 +9,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 2
-        versionName "1.8.3"
+        versionName "1.8.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // 如果没有下面的NDK相关的配置，就算armeabi下有相关的so
