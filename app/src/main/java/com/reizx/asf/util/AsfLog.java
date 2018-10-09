@@ -11,6 +11,7 @@ import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
 import com.elvishew.xlog.flattener.DefaultFlattener;
+import com.elvishew.xlog.flattener.Flattener;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;
 import com.elvishew.xlog.printer.file.FilePrinter;
@@ -71,7 +72,7 @@ public class AsfLog {
                     .Builder(logDir)                                                            // 指定保存日志文件的路径
                     .fileNameGenerator(fileNameGenerator)                                       // 指定日志文件名生成器，默认为 ChangelessFileNameGenerator("log")
                     .backupStrategy(new FileSizeBackupStrategy(500 * 1024 * 1024))    // 指定日志文件备份策略，默认为 FileSizeBackupStrategy(1024 * 1024)
-                    .logFlattener(new DefaultFlattener())                                       // 指定日志平铺器，默认为 DefaultFlattener
+                    .logFlattener(new FileFlattener())                                       // 指定日志平铺器，默认为 DefaultFlattener
                     .build();
             buildLogger(level, tag, androidPrinter, filePrinter);
         } else {
@@ -317,6 +318,22 @@ public class AsfLog {
             } catch (Exception e) {
                 return false;
             }
+        }
+    }
+
+    /**
+     * 日志平铺器
+     */
+    public static class FileFlattener implements Flattener {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        @Override
+        public CharSequence flatten(int logLevel, String tag, String message) {
+            Date date = new Date(System.currentTimeMillis());
+            return sdf.format(date)
+                    + '|' + LogLevel.getShortLevelName(logLevel)
+                    + '|' + tag
+                    + '|' + message;
         }
     }
 }

@@ -43,7 +43,6 @@ public class ForegroundService extends BaseService {
     public int onStartCommand(Intent intent, int flags, int startId) {
         AsfLog.dt(TAG, "--------->onStartCommand: ");
         //启动前台服务
-        //启动前台服务
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setNotificationOver26(Constants.FORGROUND_SERVICE_CHANNEL_ID,
                     Constants.FORGROUND_SERVICE_TITILE,
@@ -119,6 +118,7 @@ public class ForegroundService extends BaseService {
         notification.defaults = Notification.DEFAULT_SOUND; //设置为默认的声音
         startForeground(forgroundServiceId, notification);
     }
+
     public void registerAndromeda() {
         Andromeda.registerRemoteService(IAndromedaInf.class, new IAndromedaInf.Stub() {
             @Override
