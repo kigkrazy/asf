@@ -51,7 +51,6 @@ android {
         release {
             File signatureInfoFile = project.rootProject.file('SignatureInfo.properties')
             if (signatureInfoFile.exists()) {
-                apply plugin: 'walle'
                 signingConfig signingConfigs.zues_signature
             }
         }
