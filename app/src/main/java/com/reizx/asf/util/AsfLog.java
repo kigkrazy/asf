@@ -10,7 +10,6 @@ import com.blankj.utilcode.util.TimeUtils;
 import com.elvishew.xlog.LogLevel;
 import com.elvishew.xlog.Logger;
 import com.elvishew.xlog.XLog;
-import com.elvishew.xlog.flattener.DefaultFlattener;
 import com.elvishew.xlog.flattener.Flattener;
 import com.elvishew.xlog.printer.AndroidPrinter;
 import com.elvishew.xlog.printer.Printer;

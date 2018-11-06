@@ -41,7 +41,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //一些常用类库
-    //一些常用类库
     api('com.reizx:andrutil:1.8.3') {
         //一个运行时HOOK库
         exclude group: 'me.weishu:epic'
