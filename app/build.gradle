@@ -8,8 +8,8 @@ android {
         applicationId "com.reizx.asf"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 2
-        versionName "1.8.4"
+        versionCode 6
+        versionName "1.8.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // 如果没有下面的NDK相关的配置，就算armeabi下有相关的so
@@ -41,7 +41,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //一些常用类库
-    api('com.reizx:andrutil:1.8.3') {
+    api('com.reizx:andrutil:1.9.9') {
         //一个运行时HOOK库
         exclude group: 'me.weishu:epic'
         //一个通过扫描"/proc"文件夹获取安卓所有进程的库（5.x之后停用）
