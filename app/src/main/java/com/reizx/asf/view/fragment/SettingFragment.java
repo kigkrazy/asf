@@ -44,12 +44,12 @@ public class SettingFragment extends BaseFragment<SettingPresenter> implements S
                 .compose(RxUtil.<Long>rxSchedulerHelper())
                 .subscribe(new Consumer<Long>() {
                     @Override
-                    public void accept(Long aLong) throws Exception {
+                    public void accept(Long aLong) {
                         AsfLog.d("the inter ... " + aLong);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         AsfLog.d("flow err : " + throwable);
                     }
                 });
